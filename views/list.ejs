@@ -1,0 +1,67 @@
+<%- include("header") -%>
+
+  <!--   nav bar -->
+  <!-- navbar-light -->
+  <!-- bg-light  -->
+
+  <nav class="navbar navbar-expand-lg nav-bar">
+    <div class="container-fluid">
+      <a class="navbar-brand docket-text" href="#">Docket</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+          <i class="fas fa-bars" style="color:#000; font-size:28px;"></i>
+        </span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active work-list-text" aria-current="page" href="/work">Work List</a>
+          </li>
+        </ul>
+        <form class="d-flex" action="/logout" method="post">
+          <button class="btn btn-outline-success" type="submit">Logout</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========= -->
+
+  <div class="box" id="heading">
+    <h1>
+      <%= listTitle %>
+    </h1>
+  </div>
+
+  <div class="box">
+    <% newListItems.forEach((item)=>{ %>
+      <form action="/delete" method="post">
+        <div class="item">
+          <input class="inputBox" type="checkbox" onchange="this.form.submit()" name="checkbox" value="<%=item._id%>">
+
+          <p class="content-para">
+            <%= item.name %>
+          </p>
+
+        </div>
+      </form>
+      <% }) %>
+
+
+
+        <!---->
+        <form class="item" action="/newItem" method="POST">
+          <input class="inputBox" type="text" name="newItem" placeholder="New Item" autocomplete="off">
+          <button class="submit-btn" type="submit" name="list">+</button>
+        </form>
+
+  </div>
+  <div class="btn-form" id="form_btn">
+    <form action="/work" method="post">
+      <input type="text" name="title" class="input-title" autocomplete="off" placeholder="Add Title to your List" required><br>
+      <button type="submit" name="log-out" class="logout-btn">Save</button>
+    </form>
+  </div>
+
+        <%- include("footer") -%>

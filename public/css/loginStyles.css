@@ -1,0 +1,111 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+html{
+  background-image: -webkit-linear-gradient(65deg, #00bf8f 50%, #fff 50%);
+  min-height: 1000px;
+  font-family: 'helvetica neue';
+}
+body{
+    background: none;
+}
+.main-div{
+    background: none;
+   
+}
+.heading-msg{
+    font-size: 3rem;
+    color: #00bf8f;
+    transition-property: font-size,color;
+    transition-duration: 3s;
+}
+.heading-msg:hover{
+    font-size: 3.5rem;
+    color: #000;
+}
+
+.d1{
+    max-width: 700px;
+    background: none;
+    border-radius: 15px;
+}
+.login-div{
+    max-width: 700px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    box-shadow: 2px 2px 15px black;
+    transition-property: background,box-shadow;
+    transition-duration:2s;
+}
+.login-div:hover{
+    background: rgba(0, 0, 0, 1);
+    box-shadow: 2px 2px 20px black;
+}
+.inputBox{
+    position: relative;
+    outline: none;
+}
+.inputBox input{
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+    outline: none;
+}
+.inputBox input:-webkit-autofill {
+    background-color: blue;
+  }
+.inputBox input:autofill {
+    background-color: blue;
+  }
+
+.inputBox label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    font-size: 20px;
+    color: #00bf8f;
+    transition: 0.5s;
+
+}
+.inputBox input:valid + label,
+.inputBox input:focus + label
+{
+    top: -22px;
+    left: 0;
+    color: #00bf8f;
+    font-size: 14px;
+}
+.btn1{
+    background: #00bf8f;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+}
+
+.register-text{
+    padding-top: 20px;
+    color: #E4E9FD;
+}
+.copy-write{
+    text-align: center;
+    margin-top: 15rem;
+}
+.first{
+    display: flex;
+    flex-direction: row;
+}
+

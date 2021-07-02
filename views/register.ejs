@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="icon" href="images/favicon.png" type="icon" />
+  <link rel="stylesheet" href="css/loginStyles.css">
+  <title>Docket</title>
+</head>
+
+<body>
+  <div class="container">
+  <div class="container mt-5 main-div">
+    <h3 class="heading-msg">Register</h3>
+    <br><br><br>
+
+    <div class="row d1">
+      <div class="col-sm-8 d1">
+        <div class="card d1">
+          <div class="card-body login-div">
+
+            <!-- Makes POST request to /login route -->
+            <form action="/register" method="post">
+            
+              <div class="form-group inputBox">
+                
+                <input type="text" name="username" autocomplete="off" required>
+                <label>username</label>
+              </div>
+              <div class="form-group inputBox">
+                
+                <input type="password"  name="password" autocomplete="off" required>
+                <label>Password</label>
+              </div>
+              <div class="form-group inputBox">
+                
+                <input type="password"  name="confirmPassword" autocomplete="off" required>
+                <label>Confirm password</label>
+              </div>
+              <button type="submit" class="btn btn-light btn1">Register</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
