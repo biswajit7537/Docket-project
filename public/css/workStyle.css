@@ -13,10 +13,19 @@ body{
     background: none;
 }
 .docket-text{
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     color: #00bf8f;
     margin-right: 50px;
   }
+.work-list-text{
+    font-size: 1.2rem;
+    color: #0743c5;
+    transition-property: font-size;
+    transition-duration: 0.5s;
+}
+.work-list-text:hover{
+     font-size: 1.3rem;
+}
 .container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -55,9 +64,32 @@ body{
 .work-date,.work-title{
     text-align: center;
 }
-.title{
+.title-date{
     color: #0a2e7e;
+    font-size: 1.5rem;
+    transition-property: font-size,color;
+    transition-duration: 1s;
 }
+.title-date:hover{
+    color: #0f40aa;
+    font-size: 1.7rem;
+}
+.title{
+    padding-bottom: 10px;
+    font-size: 1.4rem;
+    color: rgb(44, 43, 43);
+    transition-property: font-size,color;
+    transition-duration: 1s;
+}
+.title:hover{
+    color: #000;
+    font-size: 1.7rem;
+}
+.text{
+    font-size: 1.1rem;
+    color: rgb(26, 24, 24);
+}
+
 input[type=checkBox]{
   display: none;
 }

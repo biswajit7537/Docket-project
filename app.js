@@ -22,7 +22,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-var userid = "";
 var dateTime = "";
 
 // mongodb connection
@@ -79,22 +78,14 @@ app.get("/list", (req, res) => {
     dateTime = day;
     // -----
 
-    User.findById(req.user._id, (err, foundUser) => {
+    Item.find({ num: req.user._id }, (err, foundItems) => {
       if (err) {
         console.log(err);
       }
       else {
-        Item.find({ num: foundUser._id }, (err, foundItems) => {
-          if (err) {
-            console.log(err);
-          }
-          else {
-
-            res.render("list", { listTitle: day, newListItems: foundItems });
-          }
-        })
+        res.render("list", { listTitle: day, newListItems: foundItems });
       }
-    })
+    });
   }
   else {
     res.redirect("/");
@@ -126,7 +117,7 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  userid = req.body.username;
+
   const loginUser = new User({
     username: req.body.username,
     password: req.body.password
@@ -147,14 +138,14 @@ app.post("/", (req, res) => {
 app.post("/newItem", function (req, res) {
 
   const newItems = req.body.newItem;
-      const item = new Item({
-         num: req.user._id,
-         name: newItems
-       })
-       item.save(()=>{
-        res.redirect("/list");
-       }); 
- });
+  const item = new Item({
+    num: req.user._id,
+    name: newItems
+  })
+  item.save(() => {
+    res.redirect("/list");
+  });
+});
 
 app.post("/delete", (req, res) => {
   const deleteItemId = req.body.checkbox;
@@ -182,7 +173,7 @@ app.get("/work", (req, res) => {
     })
 
   }
-  else{
+  else {
     res.redirect("/");
   }
 
@@ -190,23 +181,29 @@ app.get("/work", (req, res) => {
 
 app.post("/work", (req, res) => {
   if (req.isAuthenticated()) {
-   Item.find({ num: req.user._id }, (err, foundItems) => {
+    var newTitle = req.body.title;
+
+    console.log(req.body.title);
+    Item.find({ num: req.user._id }, (err, foundItems) => {
       if (err) {
         console.log(err);
       }
       else {
+        if (req.body.title === "") {
+          newTitle = "No Title";
+        }
         const myWork = new Work({
           userName: req.user._id,
           userDate: dateTime,
-          title: req.body.title,
+          title: newTitle,
           workItems: foundItems
         })
         myWork.save(() => {
           res.redirect("/work");
         });
       }
-    }) 
-   
+    })
+
   }
 });
 app.post("/deleteWork", (req, res) => {

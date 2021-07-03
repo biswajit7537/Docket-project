@@ -44,7 +44,7 @@
     <!--  +++++++   -->
     <div class="container">
         <% savedList.forEach((items)=>{ %>
-            <div class="item" id="pdf">
+            <div class="item">
                 <div class="work-date">
                     <div class="work-btn">
                         <form action="/deleteWork" method="post" class="btn-form">
@@ -56,14 +56,14 @@
 
 
                     </div>
-                    <h3 class="title">
+                    <h3 class="title-date">
                         <%= items.userDate %>
                     </h3>
                     <hr>
                 </div>
                 <div class="work-body">
                     <div class="work-title">
-                        <h5>
+                        <h5 class="title">
                             <%= items.title %>
                         </h5>
                     </div>
@@ -82,6 +82,7 @@
                 </div>
 
             </div>
+            
             <% }); %>
     </div>
 
@@ -100,5 +101,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
 
-   
- <%- include("footer") -%>
+    <%- include("footer") -%>

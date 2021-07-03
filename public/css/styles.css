@@ -16,9 +16,18 @@ body{
   background: rgba(0, 0, 0, 0);
 }
 .docket-text{
-  font-size: 1.7rem;
+  font-size: 1.9rem;
   color: #00bf8f;
   margin-right: 50px;
+}
+.work-list-text{
+  font-size: 1.2rem;
+  color: #0743c5;
+  transition-property: font-size;
+  transition-duration: 0.5s;
+}
+.work-list-text:hover{
+   font-size: 1.3rem;
 }
 
 h1 {
