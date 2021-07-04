@@ -22,24 +22,26 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-var dateTime = "";
 
 // mongodb connection
 
-mongoose.connect("mongodb+srv://biswajit:biswajit7537@cluster0.csxgx.mongodb.net/docketDB", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
 
-const itemScema = new mongoose.Schema({
-  num: String,
-  name: String
+const itemSchema = new mongoose.Schema({
+  name: String,
+  num: String
 })
-itemScema.plugin(passportLocalMongoose);
-const Item = new mongoose.model("Item", itemScema);
+itemSchema.plugin(passportLocalMongoose);
+const Item = new mongoose.model("Item", itemSchema);
 
 const userSchema = new mongoose.Schema({
-  username: String,
+  username: {
+    type: String,
+    unique: false
+  },
   password: String
 });
 
@@ -50,7 +52,7 @@ const workSchema = new mongoose.Schema({
   userName: String,
   userDate: String,
   title: String,
-  workItems: [itemScema]
+  workItems: [itemSchema]
 })
 workSchema.plugin(passportLocalMongoose);
 const Work = new mongoose.model("Work", workSchema);
@@ -75,7 +77,6 @@ app.get("/list", (req, res) => {
 
   if (req.isAuthenticated()) {
     const day = date.getDate();
-    dateTime = day;
     // -----
 
     Item.find({ num: req.user._id }, (err, foundItems) => {
@@ -135,16 +136,26 @@ app.post("/", (req, res) => {
 
 })
 
-app.post("/newItem", function (req, res) {
-
-  const newItems = req.body.newItem;
-  const item = new Item({
-    num: req.user._id,
-    name: newItems
-  })
-  item.save(() => {
-    res.redirect("/list");
-  });
+app.post("/list", function (req, res) {
+  if(req.isAuthenticated())
+  {
+    const item1 = new Item({
+      name: req.body.newItem,
+      num: req.user._id
+    })
+    item1.save((err)=>{
+      if(err)
+      {
+        console.log(err);
+      }
+      res.redirect("/list");
+    });
+  }
+  else
+  {
+    res.redirect("/");
+  }
+  
 });
 
 app.post("/delete", (req, res) => {
@@ -192,6 +203,7 @@ app.post("/work", (req, res) => {
         if (req.body.title === "") {
           newTitle = "No Title";
         }
+        const dateTime = date.getDate();
         const myWork = new Work({
           userName: req.user._id,
           userDate: dateTime,
@@ -226,7 +238,7 @@ app.post("/logout", (req, res) => {
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 8000;
+  port = 3000;
 }
 app.listen(port, function () {
   console.log("Server started successfully.");

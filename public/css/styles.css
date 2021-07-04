@@ -8,9 +8,11 @@ html {
   background-image: -webkit-linear-gradient(65deg, #00bf8f 50%, #E4E9FD 50%);
   min-height: 1000px;
   font-family: 'helvetica neue';
+  background-repeat: no-repeat;
 }
 body{
   background: none;
+  
 }
 .nav-bar{
   background: rgba(0, 0, 0, 0);
